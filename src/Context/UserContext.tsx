@@ -6,7 +6,7 @@ interface User {
 }
 interface UserContextType {
   user: User | null;
-
+ 
   setUser: Dispatch<SetStateAction<User | null>>;
 }
 
