@@ -1,7 +1,7 @@
 
 
 import React, { ReactNode, useState } from 'react';
-import UserContext from './UserContext';
+import UserContext from '../Context/UserContext';
 interface User {
     username: string;
     password: string;
