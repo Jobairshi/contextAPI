@@ -1,11 +1,12 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
+import UserContext from "../Context/UserContext";
 
 export default function Login() {
 
 
-    const [username, setUsername]  = useState('');
-    const [password, setPassword] = useState('');
-
+    const [username, setUsername]  = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const {setUser} = useContext(UserContext);
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formdata = new FormData(event.currentTarget);
@@ -13,7 +14,8 @@ export default function Login() {
     const pass = formdata.get("password");
     setUsername(username);
     setPassword(password);
-    console.log(name, " : : ", pass);
+    setUser({username:String(name),password:String(pass)});
+  //  console.log(name, " : : ", pass);
   }
 
   return (
@@ -51,7 +53,7 @@ export default function Login() {
               name="password"
               placeholder="input password"
               required
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+             // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
               title="password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character."
             />
           </div>
